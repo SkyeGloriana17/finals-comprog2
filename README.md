@@ -2,9 +2,9 @@
 tasks for comprog 2:
 library system
 
-#forms: 
-#a. book list
-	#i. three book categories: 
+forms:
+a. book list
+	i. three book categories: 
 		#a. Fictional
 		#b. Non Fictional
 		#c. Academics
