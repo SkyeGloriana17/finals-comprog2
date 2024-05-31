@@ -2,12 +2,12 @@
 tasks for comprog 2:
 library system
 
-forms: 
-a. book list
-	i. three book categories: 
-		a. Fictional
-		b. Non Fictional
-		c. Academics
+#forms: 
+#a. book list
+	#i. three book categories: 
+		#a. Fictional
+		#b. Non Fictional
+		#c. Academics
 	ii. details
 		a. title, ISBN, category, author, copyright,
 		publisher,and status (borrowed or returned)
