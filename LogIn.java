@@ -118,6 +118,7 @@ public class LogIn extends JFrame implements ActionListener {
     // Main class to run the login frame
     public static void main(String[] a) {
         LogIn frame = new LogIn();
+        frame.setSize(500,500);
         frame.setTitle("Login Form");
         frame.setVisible(true);
         frame.setBounds(10, 10, 370, 500);
