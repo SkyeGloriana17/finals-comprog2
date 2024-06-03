@@ -14,6 +14,7 @@ public class LogIn extends JFrame implements ActionListener {
     JButton loginButton = new JButton("LOGIN");
     JButton resetButton = new JButton("RESET");
     JCheckBox showPassword = new JCheckBox("Show Password");
+    JLabel questionLabel = new JLabel("Are you a:");
     JCheckBox chkStudent = new JCheckBox("Student");
     JCheckBox chkTeacher = new JCheckBox("Teacher");
     ButtonGroup roleGroup = new ButtonGroup(); // Group to ensure single selection
@@ -39,6 +40,7 @@ public class LogIn extends JFrame implements ActionListener {
         userTextField.setBounds(150, 50, 150, 30);
         passwordField.setBounds(150, 120, 150, 30);
         showPassword.setBounds(150, 150, 150, 30);
+        questionLabel.setBounds(50, 180, 100, 30);
         chkStudent.setBounds(150, 180, 150, 30);
         chkTeacher.setBounds(150, 210, 150, 30);
         loginButton.setBounds(50, 260, 100, 30);
@@ -53,6 +55,7 @@ public class LogIn extends JFrame implements ActionListener {
         container.add(userTextField);
         container.add(passwordField);
         container.add(showPassword);
+        container.add(questionLabel);
         container.add(chkStudent);
         container.add(chkTeacher);
         container.add(loginButton);
