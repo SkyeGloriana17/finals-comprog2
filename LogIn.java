@@ -1,10 +1,8 @@
-// Import necessary libraries
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-// Class for the login frame
 public class LogIn extends JFrame implements ActionListener {
     // Define components
     Container container = getContentPane();
@@ -80,8 +78,10 @@ public class LogIn extends JFrame implements ActionListener {
             String userText = userTextField.getText();
             String pwdText = new String(passwordField.getPassword()); // Use getPassword() for security
             
-            if (userText.equalsIgnoreCase("x") && pwdText.equals("1")) { // Password should be case-sensitive
+            if (isValidUser(userText, pwdText)) { 
                 JOptionPane.showMessageDialog(this, "Login Successful");
+                openUserInterface(userText); // Open user interface
+                dispose(); // Close the login frame
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid Username or Password");
             }
@@ -104,12 +104,23 @@ public class LogIn extends JFrame implements ActionListener {
         }
     }
 
+    // Method to check if the user is valid
+    private boolean isValidUser(String username, String password) {
+        // Implement your authentication logic here
+        return username.equalsIgnoreCase("x") && password.equals("1");
+    }
+
+    // Method to open the user interface
+    private void openUserInterface(String username) {
+        new UserInterface(username);
+    }
+
     // Main class to run the login frame
     public static void main(String[] a) {
         LogIn frame = new LogIn();
         frame.setTitle("Login Form");
         frame.setVisible(true);
-        frame.setBounds(10, 10, 370, 400);
+        frame.setBounds(10, 10, 370, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
     }

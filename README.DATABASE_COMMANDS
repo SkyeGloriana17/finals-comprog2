@@ -1,0 +1,74 @@
+database name lovelacedb
+
+tables
+user > userID, username, pword, type
+student > userName, studentID, yearLevel, section
+teacher >  userName, employeeID, department
+
+bookList > bookID, bookName, ISBN, type, author, copyright, publisher, status
+
+borrower >  userName, type, bookName, dateBorrowed, dueDate
+
+penalty > userID, amountDue, amountPaid
+
+-- Create the database
+CREATE DATABASE IF NOT EXISTS lovelacedb;
+
+-- Use the database
+USE lovelacedb;
+
+-- Create the user table
+CREATE TABLE IF NOT EXISTS user (
+    userID INT AUTO_INCREMENT PRIMARY KEY,
+    userName VARCHAR(50) NOT NULL UNIQUE,
+    pword VARCHAR(50) NOT NULL,
+    type ENUM('Student', 'Teacher') NOT NULL
+);
+
+-- Create the student table
+CREATE TABLE IF NOT EXISTS student (
+    userName VARCHAR(50) NOT NULL,
+    studentID INT PRIMARY KEY,
+    yearLevel INT NOT NULL,
+    section VARCHAR(50) NOT NULL,
+    FOREIGN KEY (userName) REFERENCES user(userName)
+);
+
+-- Create the teacher table
+CREATE TABLE IF NOT EXISTS teacher (
+    userName VARCHAR(50) NOT NULL,
+    employeeID INT PRIMARY KEY,
+    department VARCHAR(50) NOT NULL,
+    FOREIGN KEY (userName) REFERENCES user(userName)
+);
+
+-- Create the booklist table
+CREATE TABLE IF NOT EXISTS booklist (
+    bookID INT AUTO_INCREMENT PRIMARY KEY,
+    bookName VARCHAR(100) NOT NULL UNIQUE,
+    ISBN VARCHAR(20) NOT NULL,
+    type VARCHAR(50) NOT NULL,
+    author VARCHAR(100) NOT NULL,
+    copyright YEAR NOT NULL,
+    publisher VARCHAR(100) NOT NULL,
+    status ENUM('Available', 'Borrowed', 'Reserved') NOT NULL
+);
+
+-- Create the borrower table
+CREATE TABLE IF NOT EXISTS borrower (
+    userName VARCHAR(50) NOT NULL,
+    type ENUM('Student', 'Teacher') NOT NULL,
+    bookName VARCHAR(100) NOT NULL,
+    dateBorrowed DATE NOT NULL,
+    dueDate DATE NOT NULL,
+    FOREIGN KEY (userName) REFERENCES user(userName),
+    FOREIGN KEY (bookName) REFERENCES booklist(bookName)
+);
+
+-- Create the penalty table
+CREATE TABLE IF NOT EXISTS penalty (
+    userID INT NOT NULL,
+    amountDue DECIMAL(10, 2) NOT NULL,
+    amountPaid DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (userID) REFERENCES user(userID)
+);
